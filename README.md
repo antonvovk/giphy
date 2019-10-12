@@ -1,4 +1,4 @@
 #Deployment:
-    - gradlew
-    - java -jar backend/build/libs/backend-1.0.jar
-    - open http://localhost:8080
+    1. gradlew
+    2. java -jar backend/build/libs/backend-1.0.jar
+    3. open http://localhost:8080
