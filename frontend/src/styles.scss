@@ -1,0 +1,13 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~hamburgers/dist/hamburgers.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*:focus {
+  outline: none !important;
+}
+
+.mat-select-panel {
+  max-height: 1000px !important;
+}
