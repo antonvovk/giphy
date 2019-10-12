@@ -19,9 +19,14 @@ repositories {
 }
 
 dependencies {
-	runtimeOnly project(':frontend')
+	// runtimeOnly project(':frontend')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.1.9.RELEASE'
+
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'com.github.jai-imageio', name: 'jai-imageio-core', version: '1.4.0'
 }
