@@ -11,35 +11,35 @@ public class ColorConverter {
      * @return XYZ color space.
      */
     public static void RGBtoXYZ(int red, int green, int blue, double[] xyz){
-        double r = red / 255f;
-        double g = green / 255f;
-        double b = blue / 255f;
+        double r = red / 255.0d;
+        double g = green / 255.0d;
+        double b = blue / 255.0d;
 
         //R
         if ( r > 0.04045)
-            r = (double)Math.pow(( ( r + 0.055f ) / 1.055f ), 2.4f);
+            r = Math.pow((( r + 0.055d) / 1.055d ), 2.4d);
         else
-            r /= 12.92f;
+            r /= 12.92d;
 
         //G
         if ( g > 0.04045)
-            g = (double)Math.pow(( ( g + 0.055f ) / 1.055f ), 2.4f);
+            g = Math.pow((( g + 0.055d) / 1.055d ), 2.4d);
         else
-            g /= 12.92f;
+            g /= 12.92d;
 
         //B
         if ( b > 0.04045)
-            b = (double)Math.pow(( ( b + 0.055f ) / 1.055f ), 2.4f);
+            b = Math.pow((( b + 0.055d) / 1.055d ), 2.4d);
         else
-            b /= 12.92f;
+            b /= 12.92d;
 
-        r *= 100;
-        g *= 100;
-        b *= 100;
+        r *= 100.0d;
+        g *= 100.0d;
+        b *= 100.0d;
 
-        double x = 0.412453f * r + 0.35758f * g + 0.180423f * b;
-        double y = 0.212671f * r + 0.71516f * g + 0.072169f * b;
-        double z = 0.019334f * r + 0.119193f * g + 0.950227f * b;
+        double x = 0.4124564d * r + 0.3575761d * g + 0.1804375d * b;
+        double y = 0.2126729d * r + 0.7151522d * g + 0.0721750d * b;
+        double z = 0.0193339d * r + 0.1191920d * g + 0.9503041d * b;
 
         xyz[0] = x;
         xyz[1] = y;

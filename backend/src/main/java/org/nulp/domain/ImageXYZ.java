@@ -97,9 +97,9 @@ public class ImageXYZ extends ImageAbstract<Double> {
 
         for (int i = 0; i < totalPixels; i++) {
             // ColorConverter.XYZtoRGB(pixelsX[i], pixelsY[i], pixelsZ[i], retRGB);
-            int r = (int)pixelsX[i] ;
-            int g = (int)pixelsY[i] ;
-            int b = (int)pixelsZ[i] ;
+            int r = (int)Math.min(pixelsX[i] * 2.9d, 255);
+            int g = (int)Math.min(pixelsY[i] * 2.9d, 255);
+            int b = (int)Math.min(pixelsZ[i] * 2.9d, 255);
 
             int rgb = ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF) ;
 
