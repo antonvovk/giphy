@@ -1,21 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MenuComponent} from './menu/menu.component';
 import {
-  MatBottomSheet, MatBottomSheetModule,
+  MatBottomSheetModule,
   MatButtonModule,
-  MatCardModule, MatDialogModule,
-  MatIconModule, MatInputModule,
-  MatListModule, MatMenuModule,
-  MatRadioModule, MatSelectModule,
-  MatSidenavModule, MatSliderModule,
+  MatCardModule,
+  MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
   MatToolbarModule
 } from '@angular/material';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ColorSketchModule} from 'ngx-color/sketch';
 import {ColorTwitterModule} from 'ngx-color/twitter';
@@ -49,7 +54,8 @@ import {BottomSheetOverviewExampleSheet2Component} from './menu/bottom-sheet2';
     ColorSketchModule,
     ColorTwitterModule,
     MatDialogModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [

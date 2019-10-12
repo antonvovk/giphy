@@ -4,6 +4,7 @@ import {ColorEvent} from 'ngx-color';
 import {MatBottomSheet} from '@angular/material';
 import {BottomSheetOverviewExampleSheetComponent} from './bottom-sheet';
 import {BottomSheetOverviewExampleSheet2Component} from './bottom-sheet2';
+import {HFractal} from '../utils/h-fractal';
 
 export interface Fractal {
   value: string;
@@ -56,6 +57,11 @@ export class MenuComponent implements OnInit {
     sizeMultiplier: new FormControl(''),
   });
 
+  fractalForm = new FormGroup({
+    iterations: new FormControl(1),
+    lineThickness: new FormControl(1)
+  });
+
   selectedFile = null;
 
   @ViewChild('button1', {static: false}) button1: ElementRef;
@@ -74,7 +80,9 @@ export class MenuComponent implements OnInit {
   brightness = 0;
   contrast = 0;
   colorSpace = 'RGB';
-
+  lineColor = '#000000';
+  backgroundColor = '#ffffff';
+  lineColors = ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF'];
   private imageDataCopy: ImageData;
 
   constructor(private bottomSheet: MatBottomSheet, private bottomSheet2: MatBottomSheet) {
@@ -462,15 +470,23 @@ export class MenuComponent implements OnInit {
     console.log(this.fractalControl.value);
   }
 
-  handleChangeComplete1($event: ColorEvent) {
-
-  }
-
-  handleChangeComplete2($event: ColorEvent) {
-
-  }
-
   onFractalSave() {
     this.openBottomSheet2();
+  }
+
+  drawFractal() {
+    this.canvas.nativeElement.width = this.mainContent.nativeElement.offsetWidth;
+    this.canvas.nativeElement.height = this.mainContent.nativeElement.offsetHeight;
+    const drawer = new HFractal(this.canvas.nativeElement, this.lineColor,
+      this.fractalForm.get('lineThickness').value, this.backgroundColor);
+    drawer.draw(this.fractalForm.get('iterations').value);
+  }
+
+  onLineColorChange($event: ColorEvent) {
+    this.lineColor = $event.color.hex;
+  }
+
+  onBackgroundColorChange($event: ColorEvent) {
+    this.backgroundColor = $event.color.hex;
   }
 }
