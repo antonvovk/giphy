@@ -8,6 +8,7 @@ import {HFractal} from '../utils/h-fractal';
 import {LevyCCurve} from '../utils/levy-c-curve';
 import {MinkowskiCurve} from '../utils/minkowski-curve';
 import {KochLine} from '../utils/koch-line';
+import {DragonCurve} from '../utils/dragon-curve';
 
 export interface Fractal {
   value: string;
@@ -498,6 +499,11 @@ export class MenuComponent implements OnInit {
     }
     if (this.fractalControl.value === 'koch-snowflake') {
       const drawer = new KochLine(this.canvas.nativeElement, this.lineColor,
+        this.fractalForm.get('lineThickness').value, this.backgroundColor);
+      drawer.draw(this.fractalForm.get('iterations').value);
+    }
+    if (this.fractalControl.value === 'dragon-curve') {
+      const drawer = new DragonCurve(this.canvas.nativeElement, this.lineColor,
         this.fractalForm.get('lineThickness').value, this.backgroundColor);
       drawer.draw(this.fractalForm.get('iterations').value);
     }
