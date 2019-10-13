@@ -11,5 +11,17 @@ export abstract class FractalDrawer {
     this.ctx.fillStyle = backgroundColor;
   }
 
-  abstract draw(iterations: number): void;
+  protected initCanvas(): void {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  protected drawLine(from: any, to: any): void {
+    this.ctx.beginPath();
+    this.ctx.moveTo(from.x, from.y);
+    this.ctx.lineTo(to.x, to.y);
+    this.ctx.stroke();
+  }
+
+  protected abstract draw(iterations: number): void;
 }
