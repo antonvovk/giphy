@@ -1,5 +1,6 @@
 package org.nulp.controller;
 
+import org.nulp.domain.ImageHSL;
 import org.nulp.domain.ImageXYZ;
 import org.nulp.storage.StorageFileNotFoundException;
 import org.nulp.storage.StorageService;
@@ -27,14 +28,25 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
-    @PostMapping(value = "/image", produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    @PostMapping(value = "/xyz", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] convertToXYZ(@RequestParam("file") MultipartFile file) throws IOException {
         storageService.store(file);
         Resource resource = storageService.loadAsResource(file.getOriginalFilename());
         ImageXYZ imageXYZ = new ImageXYZ(ImageIO.read(resource.getFile()));
 
         ByteArrayOutputStream returnImage = new ByteArrayOutputStream();
         ImageIO.write(imageXYZ.getBufferedImage(), "png", returnImage);
+        return returnImage.toByteArray();
+    }
+
+    @PostMapping(value = "/hsv", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] convertToHSV(@RequestParam("file") MultipartFile file) throws IOException {
+        storageService.store(file);
+        Resource resource = storageService.loadAsResource(file.getOriginalFilename());
+        ImageHSL imageHSL = new ImageHSL(ImageIO.read(resource.getFile()));
+
+        ByteArrayOutputStream returnImage = new ByteArrayOutputStream();
+        ImageIO.write(imageHSL.getBufferedImage(), "png", returnImage);
         return returnImage.toByteArray();
     }
 
