@@ -4,11 +4,11 @@ import {ColorEvent} from 'ngx-color';
 import {MatBottomSheet} from '@angular/material';
 import {BottomSheetOverviewExampleSheetComponent} from './bottom-sheet';
 import {BottomSheetOverviewExampleSheet2Component} from './bottom-sheet2';
-import {HFractal} from '../utils/h-fractal';
-import {LevyCCurve} from '../utils/levy-c-curve';
-import {MinkowskiCurve} from '../utils/minkowski-curve';
-import {KochLine} from '../utils/koch-line';
-import {DragonCurve} from '../utils/dragon-curve';
+import {HFractal} from '../fractals/h-fractal';
+import {LevyCCurve} from '../fractals/levy-c-curve';
+import {MinkowskiCurve} from '../fractals/minkowski-curve';
+import {KochLine} from '../fractals/koch-line';
+import {DragonCurve} from '../fractals/dragon-curve';
 
 export interface Fractal {
   value: string;
