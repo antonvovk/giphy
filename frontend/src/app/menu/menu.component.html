@@ -38,7 +38,7 @@
               <div *ngIf="fractalControl.value !== null">
                 <form (ngSubmit)="drawFractal()" [formGroup]="fractalForm">
                   <mat-form-field class="w-100">
-                    <input formControlName="iterations" matInput max="10" min="1" placeholder="Iterations" type="number"
+                    <input formControlName="iterations" matInput max="15" min="1" placeholder="Iterations" type="number"
                            value="1">
                   </mat-form-field>
 

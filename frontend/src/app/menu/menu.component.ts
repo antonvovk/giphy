@@ -5,6 +5,8 @@ import {MatBottomSheet} from '@angular/material';
 import {BottomSheetOverviewExampleSheetComponent} from './bottom-sheet';
 import {BottomSheetOverviewExampleSheet2Component} from './bottom-sheet2';
 import {HFractal} from '../utils/h-fractal';
+import {LevyCCurve} from '../utils/levy-c-curve';
+import {MinkowskiCurve} from '../utils/minkowski-curve';
 
 export interface Fractal {
   value: string;
@@ -477,9 +479,22 @@ export class MenuComponent implements OnInit {
   drawFractal() {
     this.canvas.nativeElement.width = this.mainContent.nativeElement.offsetWidth;
     this.canvas.nativeElement.height = this.mainContent.nativeElement.offsetHeight;
-    const drawer = new HFractal(this.canvas.nativeElement, this.lineColor,
-      this.fractalForm.get('lineThickness').value, this.backgroundColor);
-    drawer.draw(this.fractalForm.get('iterations').value);
+
+    if (this.fractalControl.value === 'h-fractal') {
+      const drawer = new HFractal(this.canvas.nativeElement, this.lineColor,
+        this.fractalForm.get('lineThickness').value, this.backgroundColor);
+      drawer.draw(this.fractalForm.get('iterations').value);
+    }
+    if (this.fractalControl.value === 'levy-c-curve') {
+      const drawer = new LevyCCurve(this.canvas.nativeElement, this.lineColor,
+        this.fractalForm.get('lineThickness').value, this.backgroundColor);
+      drawer.draw(this.fractalForm.get('iterations').value);
+    }
+    if (this.fractalControl.value === 'minkowski-sausage') {
+      const drawer = new MinkowskiCurve(this.canvas.nativeElement, this.lineColor,
+        this.fractalForm.get('lineThickness').value, this.backgroundColor);
+      drawer.draw(this.fractalForm.get('iterations').value);
+    }
   }
 
   onLineColorChange($event: ColorEvent) {

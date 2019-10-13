@@ -1,3 +1,5 @@
+import {Point} from './point';
+
 export abstract class FractalDrawer {
 
   protected canvas: HTMLCanvasElement;
@@ -16,7 +18,7 @@ export abstract class FractalDrawer {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  protected drawLine(from: any, to: any): void {
+  protected drawLine(from: Point, to: Point): void {
     this.ctx.beginPath();
     this.ctx.moveTo(from.x, from.y);
     this.ctx.lineTo(to.x, to.y);
