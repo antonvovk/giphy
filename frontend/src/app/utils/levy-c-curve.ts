@@ -9,23 +9,23 @@ export class LevyCCurve extends FractalDrawer {
 
   public draw(iterations: number): void {
     this.initCanvas();
-    const point1 = new Point(this.canvas.width / 3.0, this.canvas.height / 4.0);
-    const point2 = new Point(this.canvas.width - point1.x, this.canvas.height / 4.0);
-    this.cCurve(point1, point2, iterations);
+    const a = new Point(this.canvas.width / 3.0, this.canvas.height / 4.0);
+    const b = new Point(this.canvas.width - a.x, this.canvas.height / 4.0);
+    this.cCurve(a, b, iterations);
   }
 
-  private cCurve(point1: Point, point2: Point, iterations: number): void {
+  private cCurve(a: Point, b: Point, iterations: number): void {
     if (iterations === 0) {
-      this.drawLine(point1, point2);
+      this.drawLine(a, b);
       return;
     }
 
     const newPoint = new Point(
-      (point1.x + point2.x) / 2.0 + (point1.y - point2.y) / 2.0,
-      (point2.x - point1.x) / 2.0 + (point1.y + point2.y) / 2.0
+      (a.x + b.x) / 2.0 + (a.y - b.y) / 2.0,
+      (b.x - a.x) / 2.0 + (a.y + b.y) / 2.0
     );
 
-    this.cCurve(point1, newPoint, iterations - 1);
-    this.cCurve(newPoint, point2, iterations - 1);
+    this.cCurve(a, newPoint, iterations - 1);
+    this.cCurve(newPoint, b, iterations - 1);
   }
 }

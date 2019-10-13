@@ -19,28 +19,28 @@ export class MinkowskiCurve extends FractalDrawer {
 
   public draw(iterations: number): void {
     this.initCanvas();
-    const point1 = new Point(this.canvas.width / 8.0, this.canvas.height / 2.0);
-    const point2 = new Point(this.canvas.width - point1.x, this.canvas.height / 2.0);
-    this.minkowskiCurve(point1, point2, iterations);
+    const a = new Point(this.canvas.width / 8.0, this.canvas.height / 2.0);
+    const b = new Point(this.canvas.width - a.x, this.canvas.height / 2.0);
+    this.minkowskiCurve(a, b, iterations);
   }
 
-  private minkowskiCurve(point1: Point, point2: Point, iterations: number): void {
+  private minkowskiCurve(a: Point, b: Point, iterations: number): void {
     if (iterations === 0) {
-      this.drawLine(point1, point2);
+      this.drawLine(a, b);
       return;
     }
 
     const x = new Array<number>(9);
     const y = new Array<number>(9);
-    x[0] = point1.x;
-    y[0] = point1.y;
-    x[8] = point2.x;
-    y[8] = point2.y;
+    x[0] = a.x;
+    y[0] = a.y;
+    x[8] = b.x;
+    y[8] = b.y;
 
-    if (point1.y === point2.y) { // horizontal curve
-      MinkowskiCurve.helperFunc(point1.x, point2.x, x, y);
+    if (a.y === b.y) { // horizontal curve
+      MinkowskiCurve.helperFunc(a.x, b.x, x, y);
     } else { // vertical curve
-      MinkowskiCurve.helperFunc(point1.y, point2.y, y, x);
+      MinkowskiCurve.helperFunc(a.y, b.y, y, x);
     }
 
     for (let i = 0; i < 8; i++) {
