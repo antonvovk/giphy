@@ -9,31 +9,31 @@ public class ColorConverter {
         float g = rgb[1] / 255.0f;
         float b = rgb[2] / 255.0f;
 
-        if (r > 0.04045f) {
-            r = (float) Math.pow(((r + 0.055f) / 1.055f), 2.4f);
-        } else {
-            r /= 12.92f;
-        }
+//        if (r > 0.04045f) {
+//            r = (float) Math.pow(((r + 0.055f) / 1.055f), 2.4f);
+//        } else {
+//            r /= 12.92f;
+//        }
+//
+//        if (g > 0.04045f) {
+//            g = (float) Math.pow(((g + 0.055f) / 1.055f), 2.4f);
+//        } else {
+//            g /= 12.92f;
+//        }
+//
+//        if (b > 0.04045f) {
+//            b = (float) Math.pow(((b + 0.055f) / 1.055f), 2.4f);
+//        } else {
+//            b /= 12.92f;
+//        }
 
-        if (g > 0.04045f) {
-            g = (float) Math.pow(((g + 0.055f) / 1.055f), 2.4f);
-        } else {
-            g /= 12.92f;
-        }
+//        r *= 100.0f;
+//        g *= 100.0f;
+//        b *= 100.0f;
 
-        if (b > 0.04045f) {
-            b = (float) Math.pow(((b + 0.055f) / 1.055f), 2.4f);
-        } else {
-            b /= 12.92f;
-        }
-
-        r *= 100.0f;
-        g *= 100.0f;
-        b *= 100.0f;
-
-        float x = 0.4124564f * r + 0.3575761f * g + 0.1804375f * b;
-        float y = 0.2126729f * r + 0.7151522f * g + 0.0721750f * b;
-        float z = 0.0193339f * r + 0.1191920f * g + 0.9503041f * b;
+        float x = (0.4900f * r + 0.3100f * g + 0.2000f * b) * (1.0f / 0.1769f);
+        float y = (0.1769f * r + 0.8124f * g + 0.0106f * b) * (1.0f / 0.1769f);
+        float z = (0.0000f * r + 0.0100f * g + 0.9900f * b) * (1.0f / 0.1769f);
 
         return new float[]{x, y, z};
     }
