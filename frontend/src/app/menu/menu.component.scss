@@ -7,11 +7,13 @@
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after{
-background-color: #ffffff;
+  background-color: #783B75;
+  height: 5px;
 }
 
 .hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner::before, .hamburger.is-active .hamburger-inner::after {
-background-color: #ffffff;
+  background-color: #783B75;
+  height: 5px;
 }
 
 .hamburger.is-active:hover {
@@ -59,7 +61,7 @@ mat-nav-list {
 
 .main-btn {
   color: white;
-  background-color: #673ab7 !important;
+  background-color: #783B75 !important;
   border-radius: 10px;
 }
 
@@ -68,7 +70,11 @@ mat-nav-list {
 }
 
 .color-primary {
-  color: #673ab7 !important;
+  color: #783B75 !important;
   font-weight: 500;
   font-size: 0.9em;
+}
+
+.main-color {
+  background-color: #F48F30 !important;
 }
