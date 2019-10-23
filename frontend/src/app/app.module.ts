@@ -26,15 +26,13 @@ import {ColorSketchModule} from 'ngx-color/sketch';
 import {ColorTwitterModule} from 'ngx-color/twitter';
 import {BottomSheetOverviewExampleSheetComponent} from './menu/bottom-sheet';
 import {BottomSheetOverviewExampleSheet2Component} from './menu/bottom-sheet2';
-import { StartPageComponent } from './start-page/start-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     BottomSheetOverviewExampleSheetComponent,
-    BottomSheetOverviewExampleSheet2Component,
-    StartPageComponent
+    BottomSheetOverviewExampleSheet2Component
   ],
   imports: [
     BrowserModule,

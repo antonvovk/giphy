@@ -15,8 +15,8 @@ apply plugin: 'base'
 apply plugin: 'com.moowork.node'
 
 node {
-  version = '12.12.0'
-  npmVersion = '6.11.3'
+  version = '13.0.1'
+  npmVersion = '6.12.0'
   download = false
 }
 
