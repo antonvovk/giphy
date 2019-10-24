@@ -1,0 +1,99 @@
+<app-navbar background="#4500ca" position="static"></app-navbar>
+
+<div class="row d-flex flex-nowrap" style="height: 889px">
+  <div class="mat-elevation-z8 col-3" style="width: 20%; height: 100%">
+    <div class="mx-4">
+      <input
+        style="display: none"
+        type="file" (change)="onFileChanged($event)"
+          #fileInput>
+      <button mat-button (click)="fileInput.click()" class="main-btn w-100 mt-3">Open File</button>
+
+      <div *ngIf="this.selectedFile !== null">
+        <div class="mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Color space</mat-label>
+            <mat-select [(value)]="colorSpace">
+              <mat-option value="RGB">RGB</mat-option>
+              <mat-option value="XYZ">XYZ</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="colorSpace == 'RGB'">
+          <div class="d-flex flex-nowrap w-100">
+            <span class="mt-2">R:</span>
+            <mat-slider [(value)]="R" min="-255" max="255" (change)="onImageChaneRGB()" [thumbLabel]="true" step="1"
+                                      color="primary"
+                                      class="w-100"></mat-slider>
+          </div>
+
+          <div class="d-flex flex-nowrap w-100">
+            <span class="mt-2">G:</span>
+            <mat-slider [(value)]="G" min="-255" max="255" (change)="onImageChaneRGB()" [thumbLabel]="true" step="1"
+                                      color="primary"
+                                      class="w-100"></mat-slider>
+          </div>
+
+          <div class="d-flex flex-nowrap w-100">
+            <span class="mt-2">B:</span>
+            <mat-slider [(value)]="B" min="-255" max="255" (change)="onImageChaneRGB()" [thumbLabel]="true" step="1"
+                                      color="primary"
+                                      class="w-100"></mat-slider>
+          </div>
+        </div>
+
+        <div *ngIf="colorSpace == 'XYZ'">
+          <div class="d-flex flex-nowrap w-100">
+            <span class="mt-2">X:</span>
+            <mat-slider [(value)]="X" min="-95.05" max="95.05" (change)="onImageChaneXYZ()" [thumbLabel]="true"
+                                      step="0.1" color="primary"
+                                      class="w-100"></mat-slider>
+          </div>
+
+          <div class="d-flex flex-nowrap w-100">
+            <span class="mt-2">Y:</span>
+            <mat-slider [(value)]="Y" min="-100" max="100" (change)="onImageChaneXYZ()" [thumbLabel]="true" step="0.1"
+                                      color="primary"
+                                      class="w-100"></mat-slider>
+          </div>
+
+          <div class="d-flex flex-nowrap w-100">
+            <span class="mt-2">Z:</span>
+            <mat-slider [(value)]="Z" min="-108.88" max="108.88" (change)="onImageChaneXYZ()" [thumbLabel]="true"
+                                      step="0.1" color="primary"
+                                      class="w-100"></mat-slider>
+          </div>
+        </div>
+
+        <div class="d-flex flex-nowrap w-100">
+          <span class="mt-2">Brightness:</span>
+          <mat-slider [(value)]="brightness" min="-100" max="100" (change)="onImageChangeBrightness()"
+            [thumbLabel]="true" step="1" color="primary"
+                                             class="w-100"></mat-slider>
+        </div>
+        <div class="d-flex flex-nowrap w-100">
+          <span class="mt-2">Contrast:</span>
+          <mat-slider [(value)]="contrast" min="-100" max="100" (change)="onImageChangeContrast()" [thumbLabel]="true"
+                                           step="1" color="primary"
+                                           class="w-100"></mat-slider>
+        </div>
+
+        <div class="d-flex justify-content-between mt-1">
+          <div class="mt-1 w-100 mr-3">
+            <button mat-button color="primary" class="w-100 main-btn" (click)="onImageReset()">Reset</button>
+          </div>
+
+          <div class="mt-1 w-100 ml-3">
+            <button mat-button color="primary" class="w-100 main-btn"  (click)="onSaveImage()">Save to file</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div #mainContent class="w-100 h-100" style="background: transparent">
+    <canvas #canvas></canvas>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+#main-nav {
+  background: 0 0;
+  position: fixed;
+  width: 100%;
+  padding: 0px 0;
+}
+
+.menu-item {
+  font-size: .8em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  height: 80px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+  max-width: 97%;
+  margin: auto;
+  position: relative;
+}
+
+#logo {
+  margin: 0;
+  opacity: 1;
+  max-height: 80px;
+  width: 180px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+nav {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  list-style: none;
+}
+
+.pricing-button-wrapper {
+  position: relative;
+}
+
+#pricing-button {
+  background: #fff;
+  color: #ff4a9e!important;
+  margin: 0 0 0 24px;
+  min-width: 160px;
+  align-self: center;
+  font-size: 15px;
+  padding: 12px 32px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 900;
+  line-height: 28px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: none;
+  transition: 300ms all cubic-bezier(.4,0,.2,1);
+}
+
+a:hover {
+  text-decoration: none;
+}
