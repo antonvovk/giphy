@@ -1,4 +1,4 @@
-<div [ngStyle]="{'background': background, 'position': position}" class="mat-elevation-z2" id="main-nav">
+<div [ngStyle]="{'background': background, 'position': position}" [ngClass]="startPage ? 'mat-elevation-z2' : ''" id="main-nav">
   <div class="row-container">
     <a id="logo" routerLink="/"><img alt="Elegant Themes" src="../../assets/logo.png"></a>
     <nav>

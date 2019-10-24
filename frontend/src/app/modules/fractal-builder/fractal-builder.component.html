@@ -1,0 +1,75 @@
+<app-navbar background="#4500ca" position="static" startPage="true"></app-navbar>
+
+<div class="row d-flex flex-nowrap" style="height: 889px">
+  <div class="mat-elevation-z8 col-3" style="width: 20%; height: 100%">
+    <form (ngSubmit)="drawFractal()" [formGroup]="formGroup">
+      <div class="mx-4 mt-4">
+        <h2>Fractal Builder</h2>
+
+        <mat-form-field class="w-100 mt-2">
+          <mat-label>Choose Fractal Type</mat-label>
+          <mat-select (selectionChange)="onFractalTypeValueChanged()" formControlName="fractalControl">
+            <mat-option value="none">-- None --</mat-option>
+            <mat-optgroup *ngFor="let group of fractalGroups" [disabled]="group.disabled"
+                          [label]="group.name">
+              <mat-option *ngFor="let fractal of group.fractal" [value]="fractal.value">
+                {{fractal.viewValue}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="this.formGroup.get('fractalControl').value !== 'none'">
+          <mat-form-field class="w-100 mt-2">
+            <input (change)="onIterationsNumberValueChanged()" formControlName="iterations" matInput max="15" min="1"
+                   placeholder="Iterations"
+                   type="number"
+                   value="1">
+            <mat-error *ngIf="formGroup.get('iterations')?.invalid">Min value 1 and max value 15
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-100 mt-2">
+            <input (change)="onLineThicknessValueChanged()" formControlName="lineThickness" matInput max="10" min="1"
+                   placeholder="Line thickness"
+                   type="number" value="1">
+            <mat-error *ngIf="formGroup.get('lineThickness')?.invalid">Min value 1 and max value 10
+            </mat-error>
+          </mat-form-field>
+
+          <mat-card class="mat-elevation-z2 mt-2">
+            <mat-label class="color-primary">Line color</mat-label>
+          </mat-card>
+          <div class="mt-3">
+            <color-twitter (onChangeComplete)="onLineColorValueChanged($event)" [color]="lineColor"
+                           [colors]="lineColors"></color-twitter>
+          </div>
+
+          <mat-card class="mt-3 mat-elevation-z2 mt-3">
+            <mat-label class="color-primary">Background color</mat-label>
+          </mat-card>
+          <div class="mt-3">
+            <color-twitter (onChangeComplete)="onBackgroundColorValueChanged($event)" [color]="backgroundColor"
+                           [colors]="lineColors"></color-twitter>
+          </div>
+
+
+          <div class="d-flex justify-content-between" style="margin-top: 8em">
+            <div class="mt-1 w-100 mr-3">
+              <button class="w-100 button" type="submit">Draw</button>
+            </div>
+
+            <div class="mt-1 w-100 ml-3">
+              <button class="w-100 button" (click)="onSaveToFileTriggered()">Save to file
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div #mainContent class="w-100 h-100">
+    <canvas #canvas></canvas>
+  </div>
+</div>

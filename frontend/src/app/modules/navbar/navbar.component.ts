@@ -13,6 +13,9 @@ export class NavbarComponent implements OnInit {
   @Input()
   position: string;
 
+  @Input()
+    startPage = true;
+
   constructor() {
   }
 

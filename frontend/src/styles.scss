@@ -1,5 +1,4 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~hamburgers/dist/hamburgers.css";
 
 html, body { height: 100%; }
 body {
@@ -21,4 +20,23 @@ body {
 
 .mat-select-panel {
   max-height: 1000px !important;
+}
+
+button {
+  background-color: #4a42ec;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 28px;
+  color: #fff!important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  padding: 8px 20px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  align-self: flex-start;
+  border: none;
+  margin-bottom: 16px;
+  -webkit-transition: 300ms all cubic-bezier(.4,0,.2,1);
+  transition: 300ms all cubic-bezier(.4,0,.2,1);
 }

@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {StartPageComponent} from './start-page/start-page.component';
-import {FractalBuilderComponent} from './fractal-builder/fractal-builder.component';
-import {ColorModelsComponent} from './color-models/color-models.component';
-import {AffineTransformationComponent} from './affine-transformation/affine-transformation.component';
+import {StartPageComponent} from './modules/start-page/start-page.component';
+import {FractalBuilderComponent} from './modules/fractal-builder/fractal-builder.component';
+import {ColorModelsComponent} from './modules/color-models/color-models.component';
+import {AffineTransformationComponent} from './modules/affine-transformation/affine-transformation.component';
 
 
 const routes: Routes = [

@@ -23,11 +23,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ColorSketchModule} from 'ngx-color/sketch';
 import {ColorTwitterModule} from 'ngx-color/twitter';
-import {StartPageComponent} from './start-page/start-page.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {FractalBuilderComponent} from './fractal-builder/fractal-builder.component';
-import {ColorModelsComponent} from './color-models/color-models.component';
-import {AffineTransformationComponent} from './affine-transformation/affine-transformation.component';
+import {StartPageComponent} from './modules/start-page/start-page.component';
+import {NavbarComponent} from './modules/navbar/navbar.component';
+import {FractalBuilderComponent} from './modules/fractal-builder/fractal-builder.component';
+import {ColorModelsComponent} from './modules/color-models/color-models.component';
+import {AffineTransformationComponent} from './modules/affine-transformation/affine-transformation.component';
+import {BottomSheetComponent} from './modules/fractal-builder/popups/bottom-sheet';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AffineTransformationComponent} from './affine-transformation/affine-tran
     NavbarComponent,
     FractalBuilderComponent,
     ColorModelsComponent,
-    AffineTransformationComponent
+    AffineTransformationComponent,
+    BottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,9 @@ import {AffineTransformationComponent} from './affine-transformation/affine-tran
   providers: [],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    BottomSheetComponent
   ]
 })
 export class AppModule {
