@@ -29,6 +29,8 @@ import {FractalBuilderComponent} from './modules/fractal-builder/fractal-builder
 import {ColorModelsComponent} from './modules/color-models/color-models.component';
 import {AffineTransformationComponent} from './modules/affine-transformation/affine-transformation.component';
 import {BottomSheetComponent} from './modules/fractal-builder/popups/bottom-sheet';
+import { AboutComponent } from './modules/about/about.component';
+import { TutorialComponent } from './modules/tutorial/tutorial.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {BottomSheetComponent} from './modules/fractal-builder/popups/bottom-shee
     FractalBuilderComponent,
     ColorModelsComponent,
     AffineTransformationComponent,
-    BottomSheetComponent
+    BottomSheetComponent,
+    AboutComponent,
+    TutorialComponent
   ],
   imports: [
     BrowserModule,

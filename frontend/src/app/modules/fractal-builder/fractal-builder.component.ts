@@ -89,10 +89,6 @@ export class FractalBuilderComponent {
     drawer.draw(this.formGroup.get('iterations').value);
   }
 
-  onFractalTypeValueChanged() {
-    this.drawFractal();
-  }
-
   onIterationsNumberValueChanged() {
     this.drawFractal();
   }

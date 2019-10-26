@@ -10,12 +10,14 @@
   font-size: .8em;
   text-transform: uppercase;
   font-weight: 700;
+  line-height: 1.7em;
   color: #fff;
   height: 80px;
   padding: 0 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  letter-spacing: 2px;
 }
 
 .row-container {
@@ -61,7 +63,7 @@ nav {
 
 #pricing-button {
   background: #fff;
-  color: #ff4a9e!important;
+  color: #ff4a9e;
   margin: 0 0 0 24px;
   min-width: 160px;
   align-self: center;

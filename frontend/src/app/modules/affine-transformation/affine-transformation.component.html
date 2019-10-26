@@ -2,18 +2,18 @@
 
 <div class="row d-flex flex-nowrap" style="height: 889px">
   <div class="mat-elevation-z8 col-3" style="width: 20%; height: 100%">
-    <div class="mx-4">
-      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <div>
-              <span>
-                <mat-form-field class="mr-sp mt-3" style="width: 200px">
-                  <input matInput type="number" placeholder="X1" formControlName="x1">
-                </mat-form-field>
+    <div class="mx-4 mt-4">
+      <h2>Affine transformation</h2>
 
-                <mat-form-field style="width: 200px">
-                  <input matInput type="number" placeholder="Y1" formControlName="y1">
-                </mat-form-field>
-              </span>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex justify-content-between">
+          <mat-form-field class="w-100 mr-3">
+            <input matInput type="number" placeholder="X1" formControlName="x1">
+          </mat-form-field>
+
+          <mat-form-field class="w-100 ml-3">
+            <input matInput type="number" placeholder="Y1" formControlName="y1">
+          </mat-form-field>
         </div>
 
         <div class="d-flex justify-content-between">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="mt-3">
-          <button mat-button type="submit" [disabled]="!profileForm.valid" color="primary" class="w-100 main-btn">
+          <button type="submit" [disabled]="!profileForm.valid" color="primary" class="w-100 main-btn">
             Draw
           </button>
         </div>
@@ -48,7 +48,7 @@
           </mat-form-field>
 
           <div class="mt-1">
-            <button mat-button type="submit" [disabled]="!profileForm.valid" color="primary" class="w-100 main-btn">
+            <button type="submit" [disabled]="!profileForm.valid" color="primary" class="w-100 main-btn">
               Resize
             </button>
           </div>
@@ -70,11 +70,11 @@
 
           <div class="d-flex justify-content-between mt-1">
             <div class="mt-1 w-100 mr-3">
-              <button mat-button type="submit" color="primary" class="w-100 main-btn">Start animation</button>
+              <button type="submit" class="w-100 main-btn">Start animation</button>
             </div>
 
             <div class="mt-1 w-100 ml-3">
-              <button mat-button type="submit" color="primary" class="w-100 main-btn">Stop animation</button>
+              <button type="submit" class="w-100 main-btn">Stop animation</button>
             </div>
           </div>
         </div>

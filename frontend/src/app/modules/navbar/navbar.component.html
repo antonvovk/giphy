@@ -1,25 +1,27 @@
-<div [ngStyle]="{'background': background, 'position': position}" [ngClass]="startPage ? 'mat-elevation-z2' : ''" id="main-nav">
-  <div class="row-container">
+<div [ngClass]="startPage ? 'mat-elevation-z2' : 'mat-elevation-z0'"
+     [ngStyle]="{'background': background, 'position': position, 'padding': padding}" id="main-nav">
+  <div [ngStyle]="{'max-width': maxWidth}" class="row-container">
     <a id="logo" routerLink="/"><img alt="Elegant Themes" src="../../assets/logo.png"></a>
     <nav>
       <ul class="menu">
         <li>
-          <a class="menu-item" routerLink="/">Home</a>
+          <a [ngStyle]="{'color': textColor}" class="menu-item" routerLink="/">Home</a>
         </li>
         <li>
-          <a class="menu-item" routerLink="/fractals-builder">Fractals Builder</a>
+          <a [ngStyle]="{'color': textColor}" class="menu-item" routerLink="/fractals-builder">Fractals</a>
         </li>
         <li>
-          <a class="menu-item" routerLink="/color-models">Color Models</a>
+          <a [ngStyle]="{'color': textColor}" class="menu-item" routerLink="/color-models">Color</a>
         </li>
         <li>
-          <a class="menu-item" routerLink="/affine-transformation">Affine Transformation</a>
+          <a [ngStyle]="{'color': textColor}" class="menu-item" routerLink="/affine-transformation">Affine</a>
         </li>
         <li>
-          <a class="menu-item" routerLink="/">About</a>
+          <a [ngStyle]="{'color': textColor}" class="menu-item" routerLink="/about-us">About</a>
       </ul>
       <div class="pricing-button-wrapper">
-        <a href="https://www.elegantthemes.com/join/" id="pricing-button"><span>Contact Us</span></a>
+        <a [ngStyle]="{'color': btnColor,  'background': btnBg, 'background-color': btnBgColor}"
+           id="pricing-button" routerLink="/educational-materials"><span>Tutorial</span></a>
       </div>
     </nav>
   </div>

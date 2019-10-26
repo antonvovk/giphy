@@ -2,12 +2,14 @@
 
 <div class="row d-flex flex-nowrap" style="height: 889px">
   <div class="mat-elevation-z8 col-3" style="width: 20%; height: 100%">
-    <div class="mx-4">
+    <div class="mx-4 mt-4">
+      <h2>Color models</h2>
+
       <input
         style="display: none"
         type="file" (change)="onFileChanged($event)"
           #fileInput>
-      <button mat-button (click)="fileInput.click()" class="main-btn w-100 mt-3">Open File</button>
+      <button (click)="fileInput.click()" class="main-btn w-100 mt-3">Open File</button>
 
       <div *ngIf="this.selectedFile !== null">
         <div class="mt-3">

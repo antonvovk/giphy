@@ -1,0 +1,205 @@
+.row-container.narrow {
+  width: 960px;
+}
+
+.row-container {
+  width: 1120px;
+  max-width: 90%;
+  margin: auto;
+  position: relative;
+}
+
+#pricing-table-top {
+  margin: 32px auto 64px;
+}
+
+.row {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 4% -2.5%;
+  max-width: 105%;
+}
+
+#pricing-table-top:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 60px;
+  height: 60px;
+  border-radius: 2000px;
+  background: #34dd87;
+  right: -80px;
+  top: -80px;
+}
+
+#pricing-table-top:after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 400px;
+  height: 400px;
+  border-radius: 2000px;
+  background: -webkit-linear-gradient(330deg,rgba(143,66,236,0) 45%,rgba(143,66,236,.7) 100%);
+  background: linear-gradient(120deg,rgba(143,66,236,0) 45%,rgba(143,66,236,.7) 100%);
+  right: -64px;
+  bottom: -32px;
+}
+
+.column-container {
+  padding: 0 2.5%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  display: -webkit-box;
+  display: flex;
+}
+
+.column.centered, .column .centered {
+  text-align: center;
+  -webkit-box-align: center!important;
+  align-items: center!important;
+}
+
+.column {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  min-width: 100%;
+}
+
+.card {
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 32px;
+  -webkit-transition: 300ms all cubic-bezier(.4,0,.2,1);
+  transition: 300ms all cubic-bezier(.4,0,.2,1);
+  margin-top: 24px;
+  box-shadow: 0 8px 60px 0 rgba(103,151,255,.11), 0 12px 90px 0 rgba(103,151,255,.11);
+  border: 0;
+  width: 430px;
+}
+
+.subhead {
+  color: #ff4a9e;
+  font-size: .85em;
+  letter-spacing: 2px;
+  margin-bottom: .6em;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.7em;
+}
+
+.header-text {
+  font-size: 2.3em;
+  line-height: 1.4em;
+  margin: .2em 0 .4em;
+  color: #20292f;
+  font-weight: 700;
+  width: 100%;
+}
+
+.lead {
+  font-size: 1.1em;
+  color: #6d7c90;
+  width: 100%;
+}
+
+.main-dev {
+  transform: scale(1.11);
+}
+
+.row-container.narrow {
+  width: 960px;
+}
+
+#pricing-table-top svg {
+  width: 60%;
+  margin-top: -15%;
+  margin-left: -32%;
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+  position: absolute;
+  z-index: -1;
+}
+
+.title1 {
+  background: linear-gradient(120deg,#379eff 0%,#1e65ff 100%);
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: .6em;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.7em;
+  width: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title2 {
+  background-image: -webkit-linear-gradient(120deg,#b142ec 0%,#812bea 100%);
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: .6em;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.7em;
+  width: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.button1 {
+  color: #ffffff;
+  margin: 0;
+  min-width: 160px;
+  align-self: center;
+  font-size: 15px;
+  padding: 12px 32px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 900;
+  line-height: 28px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: none;
+  transition: 300ms all cubic-bezier(.4,0,.2,1);
+  background: linear-gradient(120deg,rgba(55,118,255,0) 0%,#1e65ff 100%);
+  background-color: #379eff;
+  width: 100%;
+}
+
+.button2 {
+  color: #ffffff;
+  margin: 0;
+  min-width: 160px;
+  align-self: center;
+  font-size: 15px;
+  padding: 12px 32px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 900;
+  line-height: 28px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: none;
+  transition: 300ms all cubic-bezier(.4,0,.2,1);
+  background: linear-gradient(120deg,rgba(143,66,236,0) 0%,#812bea 100%);
+  background-color: #b142ec;
+  width: 100%;
+}

@@ -14,11 +14,31 @@ export class NavbarComponent implements OnInit {
   position: string;
 
   @Input()
-    startPage = true;
+  startPage = false;
+
+  @Input()
+  textColor = '#ffffff';
+
+  @Input()
+  maxWidth = '97%';
+
+  @Input()
+  padding: string;
+
+  @Input()
+  btnColor: string;
+
+  @Input()
+  btnBgColor: string;
+
+  @Input()
+  btnBg: string;
 
   constructor() {
   }
 
   ngOnInit() {
+    console.log(this.btnBg);
+    console.log(this.btnBgColor);
   }
 }
