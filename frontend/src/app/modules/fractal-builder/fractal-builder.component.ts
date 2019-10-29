@@ -7,8 +7,8 @@ import {KochLine} from '../../services/fractals/koch-line';
 import {DragonCurve} from '../../services/fractals/dragon-curve';
 import {ColorEvent} from 'ngx-color';
 import {FractalDrawer} from '../../services/fractals/fractal-drawer';
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
-import {BottomSheetComponent} from "./popups/bottom-sheet";
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {BottomSheetComponent} from './popups/bottom-sheet';
 
 @Component({
   selector: 'app-fractal-builder',

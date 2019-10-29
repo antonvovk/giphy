@@ -1,55 +1,83 @@
-<app-navbar background="#4500ca" position="static"></app-navbar>
+<app-navbar background="#4500ca" position="static" startPage="true"></app-navbar>
 
 <div class="row d-flex flex-nowrap" style="height: 889px">
   <div class="mat-elevation-z8 col-3" style="width: 20%; height: 100%">
-    <div class="mx-4 mt-4">
+    <div class="mx-4 mt-3">
       <h2>Affine transformation</h2>
 
-      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <div class="d-flex justify-content-between">
-          <mat-form-field class="w-100 mr-3">
-            <input matInput type="number" placeholder="X1" formControlName="x1">
+      <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <div style="font-size: 25px; padding-right: 10px;">
+            A:
+          </div>
+
+          <mat-form-field class="w-100 ">
+            <input formControlName="x1" matInput max="10" min="-10" placeholder="X" type="number">
+            <mat-error *ngIf="formGroup.get('x1')?.invalid">Min value -10 and max value 10</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-100 ml-3">
-            <input matInput type="number" placeholder="Y1" formControlName="y1">
+            <input formControlName="y1" matInput max="10" min="-10" placeholder="Y" type="number">
+            <mat-error *ngIf="formGroup.get('y1')?.invalid">Min value -10 and max value 10</mat-error>
           </mat-form-field>
         </div>
 
-        <div class="d-flex justify-content-between">
-          <mat-form-field class="w-100 mr-3">
-            <input matInput type="number" placeholder="X2" formControlName="x2">
+        <div class="d-flex justify-content-between align-items-center">
+          <div style="font-size: 25px; padding-right: 10px;">
+            B:
+          </div>
+
+          <mat-form-field class="w-100 ">
+            <input formControlName="x2" matInput max="10" min="-10" placeholder="X" type="number">
+            <mat-error *ngIf="formGroup.get('x2')?.invalid">Min value -10 and max value 10</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-100 ml-3">
-            <input matInput type="number" placeholder="Y2" formControlName="y2">
+            <input formControlName="y2" matInput max="10" min="-10" placeholder="Y" type="number">
+            <mat-error *ngIf="formGroup.get('y2')?.invalid">Min value -10 and max value 10</mat-error>
           </mat-form-field>
         </div>
 
-        <div class="d-flex justify-content-between">
-          <mat-form-field class="w-100 mr-3">
-            <input matInput type="number" placeholder="X3" formControlName="x3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div style="font-size: 25px; padding-right: 10px;">
+            C:
+          </div>
+
+          <mat-form-field class="w-100 ">
+            <input formControlName="x3" matInput max="10" min="-10" placeholder="X" type="number">
+            <mat-error *ngIf="formGroup.get('x3')?.invalid">Min value -10 and max value 10</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-100 ml-3">
-            <input matInput type="number" placeholder="Y3" formControlName="y3">
+            <input formControlName="y3" matInput max="10" min="-10" placeholder="Y" type="number">
+            <mat-error *ngIf="formGroup.get('y3')?.invalid">Min value -10 and max value 10</mat-error>
           </mat-form-field>
         </div>
 
         <div class="mt-3">
-          <button type="submit" [disabled]="!profileForm.valid" color="primary" class="w-100 main-btn">
-            Draw
+          <button [disabled]="!formGroup.valid" class="w-100 main-btn" type="submit">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="row">
+                <mat-icon class="mr-2">create</mat-icon>
+                Draw
+              </div>
+            </div>
           </button>
         </div>
 
         <div class="mt-5">
           <mat-form-field class="w-100">
-            <input matInput type="number" placeholder="Size" formControlName="sizeMultiplier">
+            <input formControlName="size" matInput placeholder="Size" type="number">
           </mat-form-field>
 
           <div class="mt-1">
-            <button type="submit" [disabled]="!profileForm.valid" color="primary" class="w-100 main-btn">
-              Resize
+            <button [disabled]="!formGroup.valid" class="w-100 main-btn" type="submit">
+              <div class="d-flex align-items-center justify-content-center">
+                <div class="row">
+                  <mat-icon class="mr-2">open_in_new</mat-icon>
+                  Resize
+                </div>
+              </div>
             </button>
           </div>
         </div>
@@ -57,7 +85,7 @@
         <div class="mt-5">
           <mat-form-field class="w-100">
             <mat-label>Vertex of the triangle</mat-label>
-            <mat-select >
+            <mat-select>
               <mat-option value="A">A</mat-option>
               <mat-option value="B">B</mat-option>
               <mat-option value="C">C</mat-option>
@@ -65,16 +93,30 @@
           </mat-form-field>
 
           <mat-form-field class="w-100">
-            <input matInput type="number" placeholder="Speed">
+            <input matInput placeholder="Speed" type="number">
           </mat-form-field>
 
           <div class="d-flex justify-content-between mt-1">
             <div class="mt-1 w-100 mr-3">
-              <button type="submit" class="w-100 main-btn">Start animation</button>
+              <button class="w-100 main-btn" type="submit">
+                <div class="d-flex align-items-center justify-content-center">
+                  <div class="row">
+                    <mat-icon class="mr-2">pause_circle_outline</mat-icon>
+                    Stop
+                  </div>
+                </div>
+              </button>
             </div>
 
             <div class="mt-1 w-100 ml-3">
-              <button type="submit" class="w-100 main-btn">Stop animation</button>
+              <button class="w-100 main-btn" type="submit">
+                <div class="d-flex align-items-center justify-content-center">
+                  <div class="row">
+                    <mat-icon class="mr-2">play_circle_outline</mat-icon>
+                    Start
+                  </div>
+                </div>
+              </button>
             </div>
           </div>
         </div>

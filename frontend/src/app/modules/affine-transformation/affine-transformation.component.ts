@@ -1,31 +1,40 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-affine-transformation',
   templateUrl: './affine-transformation.component.html',
   styleUrls: ['./affine-transformation.component.scss']
 })
-export class AffineTransformationComponent implements OnInit {
+export class AffineTransformationComponent implements OnInit, AfterViewInit {
 
-  profileForm = new FormGroup({
-    x1: new FormControl(''),
-    y1: new FormControl(''),
-    x2: new FormControl(''),
-    y2: new FormControl(''),
-    x3: new FormControl(''),
-    y3: new FormControl(''),
-    sizeMultiplier: new FormControl(''),
-  });
+  formGroup: FormGroup;
 
   @ViewChild('canvas', {static: false}) canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('mainContent', {static: false}) mainContent: ElementRef;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(fb: FormBuilder, private snackBar: MatSnackBar) {
+    this.formGroup = fb.group({
+      x1: [0, [Validators.min(-10), Validators.max(10)]],
+      y1: [0, [Validators.min(-10), Validators.max(10)]],
+      x2: [0, [Validators.min(-10), Validators.max(10)]],
+      y2: [0, [Validators.min(-10), Validators.max(10)]],
+      x3: [0, [Validators.min(-10), Validators.max(10)]],
+      y3: [0, [Validators.min(-10), Validators.max(10)]],
+      size: [1, [Validators.min(-10), Validators.max(10)]]
+    });
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
+
+  ngOnInit() {
+
+  }
 
   draw(ctx: CanvasRenderingContext2D) {
     const gridSize = 25;
@@ -94,13 +103,18 @@ export class AffineTransformationComponent implements OnInit {
     ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     this.draw(ctx);
 
-    const sizeMultiplier = this.profileForm.get('sizeMultiplier').value;
-    const x1 = this.profileForm.get('x1').value * sizeMultiplier;
-    const y1 = this.profileForm.get('y1').value * sizeMultiplier;
-    const x2 = this.profileForm.get('x2').value * sizeMultiplier;
-    const y2 = this.profileForm.get('y2').value * sizeMultiplier;
-    const x3 = this.profileForm.get('x3').value * sizeMultiplier;
-    const y3 = this.profileForm.get('y3').value * sizeMultiplier;
+    const sizeMultiplier = this.formGroup.get('size').value;
+    const x1 = this.formGroup.get('x1').value * sizeMultiplier;
+    const y1 = this.formGroup.get('y1').value * sizeMultiplier;
+    const x2 = this.formGroup.get('x2').value * sizeMultiplier;
+    const y2 = this.formGroup.get('y2').value * sizeMultiplier;
+    const x3 = this.formGroup.get('x3').value * sizeMultiplier;
+    const y3 = this.formGroup.get('y3').value * sizeMultiplier;
+
+    if (x1 === x2 && x2 === x3 && y1 === y2 && y2 === y3) {
+      this.openSnackBar('These point do not form triangle', 'Dismiss');
+      return;
+    }
 
     ctx.beginPath();
     ctx.moveTo(x1, y1);
@@ -122,5 +136,14 @@ export class AffineTransformationComponent implements OnInit {
     ctx.strokeStyle = '#000000';
     ctx.stroke();
     ctx.closePath();
+  }
+
+  ngAfterViewInit(): void {
+    this.canvas.nativeElement.width = this.mainContent.nativeElement.offsetWidth;
+    this.canvas.nativeElement.height = this.mainContent.nativeElement.offsetHeight;
+    const ctx = this.canvas.nativeElement.getContext('2d');
+
+    ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.draw(ctx);
   }
 }

@@ -56,11 +56,24 @@
 
           <div class="d-flex justify-content-between" style="margin-top: 8em">
             <div class="mt-1 w-100 mr-3">
-              <button class="w-100 button" type="submit">Draw</button>
+              <button class="w-100 button" type="submit">
+                <div class="d-flex align-items-center justify-content-center">
+                  <div class="row">
+                    <mat-icon class="mr-1">create</mat-icon>
+                    Draw
+                  </div>
+                </div>
+              </button>
             </div>
 
             <div class="mt-1 w-100 ml-3">
-              <button class="w-100 button" (click)="onSaveToFileTriggered()">Save to file
+              <button (click)="onSaveToFileTriggered()" class="w-100 button">
+                <div class="d-flex align-items-center justify-content-center">
+                  <div class="row">
+                    <mat-icon class="mr-1">save</mat-icon>
+                    Save to file
+                  </div>
+                </div>
               </button>
             </div>
           </div>

@@ -29,8 +29,10 @@ import {FractalBuilderComponent} from './modules/fractal-builder/fractal-builder
 import {ColorModelsComponent} from './modules/color-models/color-models.component';
 import {AffineTransformationComponent} from './modules/affine-transformation/affine-transformation.component';
 import {BottomSheetComponent} from './modules/fractal-builder/popups/bottom-sheet';
-import { AboutComponent } from './modules/about/about.component';
-import { TutorialComponent } from './modules/tutorial/tutorial.component';
+import {AboutComponent} from './modules/about/about.component';
+import {TutorialComponent} from './modules/tutorial/tutorial.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { TutorialComponent } from './modules/tutorial/tutorial.component';
     ColorTwitterModule,
     MatDialogModule,
     MatBottomSheetModule,
-    FormsModule
+    FormsModule,
+    MatExpansionModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [
