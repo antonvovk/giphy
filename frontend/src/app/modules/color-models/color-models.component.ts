@@ -1,5 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ColorModel} from '../../services/color-models/color-model';
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {BottomSheetComponent} from "../popups/bottom-sheet";
 
 @Component({
   selector: 'app-color-models',
@@ -25,7 +27,7 @@ export class ColorModelsComponent implements OnInit {
   @ViewChild('canvas', {static: false}) canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('mainContent', {static: false}) mainContent: ElementRef;
 
-  constructor() { }
+  constructor(private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
   }
@@ -53,21 +55,21 @@ export class ColorModelsComponent implements OnInit {
   onImageChaneRGB() {
     const ctx = this.canvas.nativeElement.getContext('2d');
     const imageData = ctx.getImageData(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-    ColorModel.applyRGB(imageData, this.R, this.G, this.B);
+    //ColorModel.applyRGB(imageData, this.R, this.G, this.B);
     ctx.putImageData(imageData, 0, 0);
   }
 
   onImageChaneXYZ() {
     const ctx = this.canvas.nativeElement.getContext('2d');
     const imageData = ctx.getImageData(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-    ColorModel.applyXYZ(imageData, this.X, this.Y, this.Z);
+    //ColorModel.applyXYZ(imageData, this.X, this.Y, this.Z);
     ctx.putImageData(imageData, 0, 0);
   }
 
   onImageChangeBrightness() {
     const ctx = this.canvas.nativeElement.getContext('2d');
     const imageData = ctx.getImageData(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-    ColorModel.applyBrightness(imageData, this.brightness);
+    //ColorModel.applyBrightness(imageData, this.brightness);
     ctx.putImageData(imageData, 0, 0);
   }
 
@@ -98,8 +100,9 @@ export class ColorModelsComponent implements OnInit {
 
 
   onSaveImage() {
-    const dataURL = this.canvas.nativeElement.toDataURL('image/png');
-    this.downloadImage(dataURL, 'graphify.png');
+    this.bottomSheet.open(BottomSheetComponent);
+    //const dataURL = this.canvas.nativeElement.toDataURL('image/png');
+    //this.downloadImage(dataURL, 'graphify.png');
   }
 
   downloadImage(data, filename) {

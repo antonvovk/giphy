@@ -28,7 +28,7 @@ import {NavbarComponent} from './modules/navbar/navbar.component';
 import {FractalBuilderComponent} from './modules/fractal-builder/fractal-builder.component';
 import {ColorModelsComponent} from './modules/color-models/color-models.component';
 import {AffineTransformationComponent} from './modules/affine-transformation/affine-transformation.component';
-import {BottomSheetComponent} from './modules/fractal-builder/popups/bottom-sheet';
+import {BottomSheetComponent} from './modules/popups/bottom-sheet';
 import {AboutComponent} from './modules/about/about.component';
 import {TutorialComponent} from './modules/tutorial/tutorial.component';
 import {MatExpansionModule} from '@angular/material/expansion';
