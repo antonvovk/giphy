@@ -33,6 +33,7 @@ import {AboutComponent} from './modules/about/about.component';
 import {TutorialComponent} from './modules/tutorial/tutorial.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {ColorCompactModule} from "ngx-color/compact";
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatBottomSheetModule,
     FormsModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ColorCompactModule
   ],
   providers: [],
   bootstrap: [

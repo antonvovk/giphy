@@ -41,16 +41,16 @@
             <mat-label class="color-primary">Line color</mat-label>
           </mat-card>
           <div class="mt-3">
-            <color-twitter (onChangeComplete)="onLineColorValueChanged($event)" [color]="lineColor"
-                           [colors]="lineColors"></color-twitter>
+            <color-compact (onChangeComplete)="onLineColorValueChanged($event)" [color]="lineColor"
+                           [colors]="lineColors"></color-compact>
           </div>
 
           <mat-card class="mt-3 box-shadow mt-3">
             <mat-label class="color-primary">Background color</mat-label>
           </mat-card>
           <div class="mt-3">
-            <color-twitter (onChangeComplete)="onBackgroundColorValueChanged($event)" [color]="backgroundColor"
-                           [colors]="lineColors"></color-twitter>
+            <color-compact (onChangeComplete)="onBackgroundColorValueChanged($event)" [color]="backgroundColor"
+                           [colors]="lineColors"></color-compact>
           </div>
 
 

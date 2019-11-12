@@ -39,7 +39,9 @@ export class FractalBuilderComponent {
 
   lineColor = '#000000';
   backgroundColor = '#ffffff';
-  lineColors = ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF'];
+  lineColors = ['#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00', '#DBDF00', '#A4DD00', '#68CCCA', '#73D8FF', '#AEA1FF', '#FDA1FF',
+    '#333333', '#808080', '#CCCCCC', '#D33115', '#E27300', '#FCC400', '#B0BC00', '#68BC00', '#16A5A5', '#009CE0', '#7B64FF', '#FA28FF',
+    '#000000', '#666666', '#B3B3B3', '#9F0500', '#C45100', '#FB9E00', '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E'];
 
   @ViewChild('canvas', {static: false}) canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('mainContent', {static: false}) mainContent: ElementRef;
@@ -108,6 +110,11 @@ export class FractalBuilderComponent {
   }
 
   onSaveToFileTriggered() {
-    this.bottomSheet.open(BottomSheetComponent);
+    this.bottomSheet.open(BottomSheetComponent, {
+      data: {
+        canvas: this.canvas.nativeElement,
+        filename: this.formGroup.get('fractalControl').value
+      }
+    });
   }
 }

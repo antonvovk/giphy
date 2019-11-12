@@ -1,9 +1,21 @@
 <mat-nav-list>
-  <a href="https://keep.google.com/" mat-list-item>
+  <a (click)="jpeg()" mat-list-item>
     <span mat-line>JPEG</span>
   </a>
 
-  <a href="https://docs.google.com/" mat-list-item>
+  <a (click)="png()" mat-list-item>
     <span mat-line>PNG</span>
+  </a>
+
+  <a (click)="tiff()" mat-list-item>
+    <span mat-line>TIFF</span>
+  </a>
+
+  <a (click)="webp()" mat-list-item>
+    <span mat-line>WEBP</span>
+  </a>
+
+  <a (click)="gif()" mat-list-item>
+    <span mat-line>GIF</span>
   </a>
 </mat-nav-list>
