@@ -1,10 +1,10 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HFractal} from '../../services/fractals/h-fractal';
-import {LevyCCurve} from '../../services/fractals/levy-c-curve';
-import {MinkowskiCurve} from '../../services/fractals/minkowski-curve';
-import {KochLine} from '../../services/fractals/koch-line';
-import {DragonCurve} from '../../services/fractals/dragon-curve';
+import {HFractal} from '../../services/fractals/geometric/h-fractal';
+import {LevyCCurve} from '../../services/fractals/geometric/levy-c-curve';
+import {MinkowskiCurve} from '../../services/fractals/geometric/minkowski-curve';
+import {KochLine} from '../../services/fractals/ifs/koch-line';
+import {DragonCurve} from '../../services/fractals/ifs/dragon-curve';
 import {ColorEvent} from 'ngx-color';
 import {FractalDrawer} from '../../services/fractals/fractal-drawer';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
@@ -18,6 +18,7 @@ import {BottomSheetComponent} from '../popups/bottom-sheet';
 export class FractalBuilderComponent {
 
   formGroup: FormGroup;
+  curMax = 0;
 
   fractalGroups = [
     {
@@ -48,14 +49,14 @@ export class FractalBuilderComponent {
 
   constructor(fb: FormBuilder, private bottomSheet: MatBottomSheet) {
     this.formGroup = fb.group({
-      iterations: [1, [Validators.min(1), Validators.max(15)]],
+      iterations: [1, [Validators.min(0), Validators.max(20)]],
       lineThickness: [1, [Validators.min(1), Validators.max(10)]],
       fractalControl: ['none']
     });
   }
 
   drawFractal() {
-    if (this.formGroup.get('iterations').invalid || this.formGroup.get('lineThickness').invalid) {
+    if (!this.valid() || this.formGroup.get('lineThickness').invalid) {
       return;
     }
 
@@ -116,5 +117,28 @@ export class FractalBuilderComponent {
         filename: this.formGroup.get('fractalControl').value
       }
     });
+  }
+
+  valid(): boolean {
+    const iter = this.formGroup.get('iterations').value;
+    switch (this.formGroup.get('fractalControl').value) {
+      case 'h-fractal':
+        this.curMax = 8;
+        return iter >= 0 && iter <= 8;
+      case 'levy-c-curve':
+        this.curMax = 15;
+        return iter >= 0 && iter <= 15;
+      case 'minkowski-sausage':
+        this.curMax = 6;
+        return iter >= 0 && iter <= 6;
+      case 'koch-snowflake':
+        this.curMax = 10;
+        return iter >= 0 && iter <= 10;
+      case 'dragon-curve':
+        this.curMax = 15;
+        return iter >= 0 && iter <= 15;
+      default:
+        return;
+    }
   }
 }

@@ -21,11 +21,12 @@
 
         <div *ngIf="this.formGroup.get('fractalControl').value !== 'none'">
           <mat-form-field class="w-100 mt-2">
-            <input (change)="onIterationsNumberValueChanged()" formControlName="iterations" matInput max="15" min="1"
+            <input (change)="onIterationsNumberValueChanged()" [max]="curMax" formControlName="iterations" matInput
+                   min="1"
                    placeholder="Iterations"
                    type="number"
                    value="1">
-            <mat-error *ngIf="formGroup.get('iterations')?.invalid">Min value 1 and max value 15
+            <mat-error *ngIf="!this.valid()">Min value 1 and max value {{curMax}}
             </mat-error>
           </mat-form-field>
 

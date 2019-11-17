@@ -1,5 +1,5 @@
-import {FractalDrawer} from './fractal-drawer';
-import {Point} from './point';
+import {FractalDrawer} from '../fractal-drawer';
+import {Point} from '../utils/point';
 
 export class HFractal extends FractalDrawer {
 
