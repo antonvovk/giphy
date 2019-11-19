@@ -8,7 +8,7 @@
 
         <mat-form-field class="w-100 mt-2">
           <mat-label>Choose Fractal Type</mat-label>
-          <mat-select formControlName="fractalControl">
+          <mat-select (selectionChange)="clearFormValues()" formControlName="fractalControl">
             <mat-option value="none">-- None --</mat-option>
             <mat-optgroup *ngFor="let group of fractalGroups" [disabled]="group.disabled"
                           [label]="group.name">

@@ -141,4 +141,10 @@ export class FractalBuilderComponent {
         return;
     }
   }
+
+  clearFormValues() {
+    console.log('fsdfs');
+    this.formGroup.patchValue({iterations: 1, lineThickness: 1});
+    this.drawFractal();
+  }
 }

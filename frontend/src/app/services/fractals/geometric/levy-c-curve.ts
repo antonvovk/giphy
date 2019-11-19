@@ -29,3 +29,5 @@ export class LevyCCurve extends FractalDrawer {
     this.cCurve(newPoint, b, iterations - 1);
   }
 }
+
+
