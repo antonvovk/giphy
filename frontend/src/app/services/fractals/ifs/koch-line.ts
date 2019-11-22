@@ -41,7 +41,6 @@ export class KochLine extends FractalDrawer {
     this.kochLine(a1, c, fi + Math.PI / 3.0, iterations);
     this.kochLine(c, b1, fi - Math.PI / 3.0, iterations);
 
-    --iterations;
     this.kochLine(a, a1, fi, iterations);
     this.kochLine(b1, b, fi, iterations);
   }

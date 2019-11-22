@@ -16,10 +16,10 @@ export class DragonCurve extends FractalDrawer {
 
   public dragonCurve(a: Point, b: Point, iterations): void {
     if (iterations == 0) {
+      this.drawLine(a, b);
       return;
     }
 
-    this.drawLine(a, b);
     const newPoint = a.add(b.subtract(a).multiplyBy2DMatrix([[1 / 2, 1 / 2], [-1 / 2, 1 / 2]]));
     this.dragonCurve(newPoint, a, iterations - 1);
     this.dragonCurve(newPoint, b, iterations - 1);

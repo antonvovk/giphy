@@ -9,6 +9,7 @@ import {ColorEvent} from 'ngx-color';
 import {FractalDrawer} from '../../services/fractals/fractal-drawer';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {BottomSheetComponent} from '../popups/bottom-sheet';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-fractal-builder',
@@ -47,7 +48,7 @@ export class FractalBuilderComponent {
   @ViewChild('canvas', {static: false}) canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('mainContent', {static: false}) mainContent: ElementRef;
 
-  constructor(fb: FormBuilder, private bottomSheet: MatBottomSheet) {
+  constructor(fb: FormBuilder, private bottomSheet: MatBottomSheet, private _snackBar: MatSnackBar) {
     this.formGroup = fb.group({
       iterations: [1, [Validators.min(0), Validators.max(20)]],
       lineThickness: [1, [Validators.min(1), Validators.max(10)]],
@@ -56,6 +57,12 @@ export class FractalBuilderComponent {
   }
 
   drawFractal() {
+    if (this.formGroup.get('iterations').value == this.curMax) {
+      this._snackBar.open('Max iterations reached', 'Dismiss', {
+        duration: 2000,
+      });
+    }
+
     if (!this.valid() || this.formGroup.get('lineThickness').invalid) {
       return;
     }
@@ -143,7 +150,6 @@ export class FractalBuilderComponent {
   }
 
   clearFormValues() {
-    console.log('fsdfs');
     this.formGroup.patchValue({iterations: 1, lineThickness: 1});
     this.drawFractal();
   }
