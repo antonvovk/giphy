@@ -1,5 +1,2 @@
-build
-dist
-.gradle
-.idea
 node_modules
+.idea
