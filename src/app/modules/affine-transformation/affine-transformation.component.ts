@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatrixMultiply} from '../../services/affine-transformation/matrix-multiply';
-import {Triangle} from '../../services/affine-transformation/triangle';
-import {Point} from '../../services/affine-transformation/point';
+import {Transformations} from '../../services/affine-transformation/transformations';
+import {Triangle} from '../../services/affine-transformation/utils/triangle';
+import {Point} from '../../services/affine-transformation/utils/point';
 
 @Component({
   selector: 'app-affine-transformation',
@@ -30,7 +30,6 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
       y3: [0, [Validators.min(-10), Validators.max(10)]],
       size: [1, [Validators.min(-10), Validators.max(10)]]
     });
-    MatrixMultiply.multiplyMatrixByMatrix([[]], [[]]);
   }
 
   openSnackBar(message: string, action: string) {
@@ -155,8 +154,11 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
 
     ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     this.draw(ctx);
-    
+
     this.triangle = new Triangle(new Point(0, 0), new Point(50, 100), new Point(120, -30));
     this.drawTriangle(this.triangle);
+    const transformationMatrix = Transformations.rotateTransformation(90, 1, this.triangle.a);
+    const newTriangle = this.triangle.transform(transformationMatrix);
+    this.drawTriangle(newTriangle);
   }
 }
