@@ -38,7 +38,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.btnBg);
-    console.log(this.btnBgColor);
+
   }
 }

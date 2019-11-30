@@ -28,12 +28,14 @@ export class Vector {
   public multiply(matrix: Matrix): Vector {
     const result = new Array<number>(matrix.length);
 
-    for (let i = 0; i < result.length; ++i) {
+    for (let i = 0; i < matrix.length; ++i) {
       let elem = 0.0;
-      for (let j = 0; j < result.length; ++j) {
-        elem += this.coordinates[j] * matrix[i][j];
+
+      for (let j = 0; j < matrix.length; ++j) {
+        elem += this.coordinates[j] * matrix.coordinates[i][j];
       }
-      result.push(elem);
+
+      result[i] = elem;
     }
 
     return new Vector(result);

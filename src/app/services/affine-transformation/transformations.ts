@@ -1,5 +1,6 @@
 import {Matrix} from './utils/matrix';
 import {Point} from './utils/point';
+import {Triangle} from './utils/triangle';
 
 export class Transformations {
 
@@ -28,14 +29,11 @@ export class Transformations {
     ]);
   }
 
-  public static rotateTransformation(angle: number, k: number, center: Point): Matrix {
-    const transformations = [
-      Transformations.move(-center.x, -center.y),
-      Transformations.rotate(angle),
-      Transformations.scale(k, k),
-      Transformations.move(center.x, center.y),
-    ];
-
-    return transformations[0].multiply(transformations[1]).multiply(transformations[2]).multiply(transformations[3]);
+  public static rotateTransformation(triangle: Triangle, angle: number, k: number, center: Point): void {
+    triangle
+      .transform(Transformations.move(-center.x, -center.y))
+      .transform(Transformations.rotate(angle))
+      .transform(Transformations.scale(k, k))
+      .transform(Transformations.move(center.x, center.y));
   }
 }

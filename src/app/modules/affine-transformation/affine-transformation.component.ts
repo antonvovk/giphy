@@ -155,10 +155,9 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
     ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     this.draw(ctx);
 
-    this.triangle = new Triangle(new Point(0, 0), new Point(50, 100), new Point(120, -30));
-    this.drawTriangle(this.triangle);
-    const transformationMatrix = Transformations.rotateTransformation(90, 1, this.triangle.a);
-    const newTriangle = this.triangle.transform(transformationMatrix);
-    this.drawTriangle(newTriangle);
+    const triangle = new Triangle(new Point(0, 0), new Point(0, 100), new Point(100, 0));
+    this.drawTriangle(triangle);
+    Transformations.rotateTransformation(triangle, 120, 1, triangle.a);
+    this.drawTriangle(triangle);
   }
 }

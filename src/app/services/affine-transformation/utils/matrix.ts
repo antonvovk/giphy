@@ -34,9 +34,11 @@ export class Matrix {
     for (let i = 0; i < matrix.length; ++i) {
       for (let j = 0; j < matrix.length; ++j) {
         let elem = 0.0;
+
         for (let k = 0; k < matrix.length; ++k) {
-          elem += this._coordinates[i][k] * matrix._coordinates[k][j];
+          elem += this.coordinates[i][k] * matrix.coordinates[k][j];
         }
+
         result[i][j] = elem;
       }
     }
