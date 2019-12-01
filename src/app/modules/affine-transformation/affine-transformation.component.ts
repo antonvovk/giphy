@@ -22,13 +22,13 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
 
   constructor(fb: FormBuilder, private snackBar: MatSnackBar) {
     this.formGroup = fb.group({
-      x1: [0, [Validators.min(-10), Validators.max(10)]],
-      y1: [0, [Validators.min(-10), Validators.max(10)]],
-      x2: [0, [Validators.min(-10), Validators.max(10)]],
-      y2: [0, [Validators.min(-10), Validators.max(10)]],
-      x3: [0, [Validators.min(-10), Validators.max(10)]],
-      y3: [0, [Validators.min(-10), Validators.max(10)]],
-      size: [1, [Validators.min(-10), Validators.max(10)]]
+      x1: [0, [Validators.min(-100), Validators.max(100)]],
+      y1: [0, [Validators.min(-100), Validators.max(100)]],
+      x2: [0, [Validators.min(-100), Validators.max(100)]],
+      y2: [100, [Validators.min(-100), Validators.max(100)]],
+      x3: [100, [Validators.min(-100), Validators.max(100)]],
+      y3: [0, [Validators.min(-100), Validators.max(100)]],
+      size: [1, [Validators.min(-100), Validators.max(100)]]
     });
   }
 
@@ -117,10 +117,16 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
     const x3 = this.formGroup.get('x3').value * sizeMultiplier;
     const y3 = this.formGroup.get('y3').value * sizeMultiplier;
 
-    if (x1 === x2 && x2 === x3 && y1 === y2 && y2 === y3) {
+    const triangle = new Triangle(new Point(x1, y1), new Point(x2, y2), new Point(x3, y3));
+
+    if (!triangle.valid()) {
       this.openSnackBar('These point do not form triangle', 'Dismiss');
       return;
     }
+
+    this.drawTriangle(triangle);
+    Transformations.rotateTransformation(triangle, 120, 1, triangle.a);
+    this.drawTriangle(triangle);
   }
 
   drawTriangle(triangle: Triangle) {
@@ -151,13 +157,7 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
     this.canvas.nativeElement.width = this.mainContent.nativeElement.offsetWidth;
     this.canvas.nativeElement.height = this.mainContent.nativeElement.offsetHeight;
     const ctx = this.canvas.nativeElement.getContext('2d');
-
     ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     this.draw(ctx);
-
-    const triangle = new Triangle(new Point(0, 0), new Point(0, 100), new Point(100, 0));
-    this.drawTriangle(triangle);
-    Transformations.rotateTransformation(triangle, 120, 1, triangle.a);
-    this.drawTriangle(triangle);
   }
 }

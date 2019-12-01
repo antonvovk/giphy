@@ -6,120 +6,112 @@
       <h2>Affine transformation</h2>
 
       <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <div style="font-size: 25px; padding-right: 10px;">
-            A:
-          </div>
-
-          <mat-form-field class="w-100 ">
-            <input formControlName="x1" matInput max="10" min="-10" placeholder="X" type="number">
-            <mat-error *ngIf="formGroup.get('x1')?.invalid">Min value -10 and max value 10</mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="w-100 ml-3">
-            <input formControlName="y1" matInput max="10" min="-10" placeholder="Y" type="number">
-            <mat-error *ngIf="formGroup.get('y1')?.invalid">Min value -10 and max value 10</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center">
-          <div style="font-size: 25px; padding-right: 10px;">
-            B:
-          </div>
-
-          <mat-form-field class="w-100 ">
-            <input formControlName="x2" matInput max="10" min="-10" placeholder="X" type="number">
-            <mat-error *ngIf="formGroup.get('x2')?.invalid">Min value -10 and max value 10</mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="w-100 ml-3">
-            <input formControlName="y2" matInput max="10" min="-10" placeholder="Y" type="number">
-            <mat-error *ngIf="formGroup.get('y2')?.invalid">Min value -10 and max value 10</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center">
-          <div style="font-size: 25px; padding-right: 10px;">
-            C:
-          </div>
-
-          <mat-form-field class="w-100 ">
-            <input formControlName="x3" matInput max="10" min="-10" placeholder="X" type="number">
-            <mat-error *ngIf="formGroup.get('x3')?.invalid">Min value -10 and max value 10</mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="w-100 ml-3">
-            <input formControlName="y3" matInput max="10" min="-10" placeholder="Y" type="number">
-            <mat-error *ngIf="formGroup.get('y3')?.invalid">Min value -10 and max value 10</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="mt-3">
-          <button [disabled]="!formGroup.valid" class="w-100 main-btn" type="submit">
-            <div class="d-flex align-items-center justify-content-center">
-              <div class="row">
-                <mat-icon class="mr-2">create</mat-icon>
-                Draw
-              </div>
+        <mat-card class="mat-elevation-z2 mt-3" style="padding-top: 0;">
+          <mat-toolbar class="d-flex justify-content-center" style="background-color: #ffffff; padding: 0;">Vertexes
+          </mat-toolbar>
+          <div class="d-flex justify-content-between align-items-center">
+            <div style="font-size: 25px; padding-right: 10px;">
+              A:
             </div>
-          </button>
-        </div>
 
-        <div class="mt-5">
-          <mat-form-field class="w-100">
-            <input formControlName="size" matInput placeholder="Size" type="number">
-          </mat-form-field>
+            <mat-form-field style="width: 150px;">
+              <input formControlName="x1" matInput max="10" min="-10" placeholder="X" type="number">
+              <mat-error *ngIf="formGroup.get('x1')?.invalid">Min value -10 and max value 10</mat-error>
+            </mat-form-field>
 
-          <div class="mt-1">
+            <mat-form-field class="ml-3" style="width: 150px;">
+              <input formControlName="y1" matInput max="10" min="-10" placeholder="Y" type="number">
+              <mat-error *ngIf="formGroup.get('y1')?.invalid">Min value -10 and max value 10</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div style="font-size: 25px; padding-right: 10px;">
+              B:
+            </div>
+
+            <mat-form-field style="width: 150px;">
+              <input formControlName="x2" matInput max="10" min="-10" placeholder="X" type="number">
+              <mat-error *ngIf="formGroup.get('x2')?.invalid">Min value -10 and max value 10</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="ml-3" style="width: 150px;">
+              <input formControlName="y2" matInput max="10" min="-10" placeholder="Y" type="number">
+              <mat-error *ngIf="formGroup.get('y2')?.invalid">Min value -10 and max value 10</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div style="font-size: 25px; padding-right: 10px;">
+              C:
+            </div>
+
+            <mat-form-field style="width: 150px;">
+              <input formControlName="x3" matInput max="10" min="-10" placeholder="X" type="number">
+              <mat-error *ngIf="formGroup.get('x3')?.invalid">Min value -10 and max value 10</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="ml-3" style="width: 150px;">
+              <input formControlName="y3" matInput max="10" min="-10" placeholder="Y" type="number">
+              <mat-error *ngIf="formGroup.get('y3')?.invalid">Min value -10 and max value 10</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-3">
             <button [disabled]="!formGroup.valid" class="w-100 main-btn" type="submit">
               <div class="d-flex align-items-center justify-content-center">
                 <div class="row">
-                  <mat-icon class="mr-2">open_in_new</mat-icon>
-                  Resize
+                  <mat-icon class="mr-2">create</mat-icon>
+                  Draw
                 </div>
               </div>
             </button>
           </div>
-        </div>
+        </mat-card>
 
-        <div class="mt-5">
-          <mat-form-field class="w-100">
-            <mat-label>Vertex of the triangle</mat-label>
-            <mat-select>
-              <mat-option value="A">A</mat-option>
-              <mat-option value="B">B</mat-option>
-              <mat-option value="C">C</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <mat-card class="mt-4 mat-elevation-z2" style="padding-top: 0;">
+          <mat-toolbar class="d-flex justify-content-center" style="background-color: #ffffff; padding: 0;">Rotation
+          </mat-toolbar>
+          <div>
+            <mat-form-field class="w-100">
+              <mat-label>Vertex of the triangle</mat-label>
+              <mat-select>
+                <mat-option value="A">A</mat-option>
+                <mat-option value="B">B</mat-option>
+                <mat-option value="C">C</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <mat-form-field class="w-100">
-            <input matInput placeholder="Speed" type="number">
-          </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Direction</mat-label>
+              <mat-select>
+                <mat-option value="Left">Left</mat-option>
+                <mat-option value="Right">Right</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <div class="d-flex justify-content-between mt-1">
-            <div class="mt-1 w-100 mr-3">
-              <button class="w-100 main-btn" type="submit">
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="row">
-                    <mat-icon class="mr-2">pause_circle_outline</mat-icon>
-                    Stop
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Angle" type="number">
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Ratio">
+            </mat-form-field>
+
+            <div class="d-flex justify-content-between mt-1">
+              <div class="mt-1 w-100 ml-3">
+                <button class="w-100 main-btn" type="submit">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="row">
+                      <mat-icon class="mr-2">play_circle_outline</mat-icon>
+                      Rotate
+                    </div>
                   </div>
-                </div>
-              </button>
-            </div>
-
-            <div class="mt-1 w-100 ml-3">
-              <button class="w-100 main-btn" type="submit">
-                <div class="d-flex align-items-center justify-content-center">
-                  <div class="row">
-                    <mat-icon class="mr-2">play_circle_outline</mat-icon>
-                    Start
-                  </div>
-                </div>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </mat-card>
       </form>
     </div>
   </div>

@@ -39,6 +39,10 @@ export class Triangle {
     this._c = value;
   }
 
+  public valid() {
+    return this.a.distance(this.c) + this.b.distance(this.c) !== this.a.distance(this.b);
+  }
+
   public transform(transformation: Matrix): Triangle {
     this.a = this.a.toVector().transform(transformation).toPoint();
     this.b = this.b.toVector().transform(transformation).toPoint();
