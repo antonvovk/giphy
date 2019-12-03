@@ -5,7 +5,7 @@
     <div class="mx-4 mt-3">
       <h2>Affine transformation</h2>
 
-      <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+      <form [formGroup]="formGroup">
         <mat-card class="mat-elevation-z2 mt-3" style="padding-top: 0;">
           <mat-toolbar class="d-flex justify-content-center" style="background-color: #ffffff; padding: 0;">Vertexes
           </mat-toolbar>
@@ -58,7 +58,7 @@
           </div>
 
           <div class="mt-3">
-            <button [disabled]="!formGroup.valid" class="w-100 main-btn" type="submit">
+            <button (click)="onSubmit()" [disabled]="!formGroup.valid" class="w-100 main-btn" type="submit">
               <div class="d-flex align-items-center justify-content-center">
                 <div class="row">
                   <mat-icon class="mr-2">create</mat-icon>
@@ -75,7 +75,7 @@
           <div>
             <mat-form-field class="w-100">
               <mat-label>Vertex of the triangle</mat-label>
-              <mat-select>
+              <mat-select formControlName="vertex">
                 <mat-option value="A">A</mat-option>
                 <mat-option value="B">B</mat-option>
                 <mat-option value="C">C</mat-option>
@@ -84,23 +84,23 @@
 
             <mat-form-field class="w-100">
               <mat-label>Direction</mat-label>
-              <mat-select>
+              <mat-select formControlName="direction">
                 <mat-option value="Left">Left</mat-option>
                 <mat-option value="Right">Right</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Angle" type="number">
+              <input formControlName="angle" matInput placeholder="Angle" type="number">
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Ratio">
+              <input formControlName="ratio" matInput placeholder="Ratio">
             </mat-form-field>
 
             <div class="d-flex justify-content-between mt-1">
               <div class="mt-1 w-100 ml-3">
-                <button class="w-100 main-btn" type="submit">
+                <button (click)="rotate()" class="w-100 main-btn" type="submit">
                   <div class="d-flex align-items-center justify-content-center">
                     <div class="row">
                       <mat-icon class="mr-2">play_circle_outline</mat-icon>
