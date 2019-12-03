@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Transformations} from '../../services/affine-transformation/transformations';
 import {Triangle} from '../../services/affine-transformation/utils/triangle';
 import {Point} from '../../services/affine-transformation/utils/point';
+import {Transformations} from '../../services/affine-transformation/transformations';
 
 @Component({
   selector: 'app-affine-transformation',
@@ -14,6 +14,7 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
 
   formGroup: FormGroup;
   gridSize = 30;
+  triangle: Triangle;
 
   @ViewChild('canvas', {static: false}) canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('mainContent', {static: false}) mainContent: ElementRef;
@@ -21,12 +22,15 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
   constructor(fb: FormBuilder, private snackBar: MatSnackBar) {
     this.formGroup = fb.group({
       x1: [0, [Validators.min(-100), Validators.max(100)]],
-      y1: [0, [Validators.min(-100), Validators.max(100)]],
+      y1: [8, [Validators.min(-100), Validators.max(100)]],
       x2: [0, [Validators.min(-100), Validators.max(100)]],
-      y2: [10, [Validators.min(-100), Validators.max(100)]],
+      y2: [5, [Validators.min(-100), Validators.max(100)]],
       x3: [10, [Validators.min(-100), Validators.max(100)]],
-      y3: [0, [Validators.min(-100), Validators.max(100)]],
-      size: [1, [Validators.min(-100), Validators.max(100)]]
+      y3: [5, [Validators.min(-100), Validators.max(100)]],
+      vertex: ['A'],
+      direction: ['Left'],
+      angle: [90],
+      ratio: [1]
     });
   }
 
@@ -50,16 +54,18 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
     const x3 = this.formGroup.get('x3').value * sizeMultiplier;
     const y3 = this.formGroup.get('y3').value * sizeMultiplier;
 
-    const triangle = new Triangle(new Point(x1, y1), new Point(x2, y2), new Point(x3, y3));
+    const triangle = new Triangle(new Point(x1, -y1), new Point(x2, -y2), new Point(x3, -y3));
 
-    if (!triangle.valid()) {
+    if (!triangle.valid()
+      || (triangle.a.x === triangle.b.x && triangle.a.y === triangle.b.y)
+      || (triangle.a.x === triangle.c.x && triangle.a.y === triangle.c.y)
+      || (triangle.c.x === triangle.b.x && triangle.c.y === triangle.b.y)) {
       this.openSnackBar('These point do not form triangle', 'Dismiss');
       return;
     }
 
     this.drawTriangle(triangle);
-    Transformations.rotateTransformation(triangle, 90, 1, triangle.b);
-    this.drawTriangle(triangle);
+    this.triangle = triangle;
   }
 
   drawTriangle(triangle: Triangle) {
@@ -151,14 +157,61 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
   }
 
   zoomIn() {
+    if (this.gridSize + 1 >= 60) {
+      this.openSnackBar('Cannot zoom in', 'Dismiss');
+      return;
+    }
+
     this.gridSize += 1;
     this.drawGrid(this.gridSize);
+    console.log(this.gridSize);
     this.onSubmit();
   }
 
   zoomOut() {
+    if (this.gridSize - 1 <= 1) {
+      this.openSnackBar('Cannot zoom out', 'Dismiss');
+      return;
+    }
+
     this.gridSize -= 1;
     this.drawGrid(this.gridSize);
     this.onSubmit();
+  }
+
+  async rotate() {
+    this.drawGrid(this.gridSize);
+    this.onSubmit();
+    const vertex = this.formGroup.get('vertex').value;
+    const direction = this.formGroup.get('direction').value;
+    let angle = this.formGroup.get('angle').value;
+    const ratio = this.formGroup.get('ratio').value;
+    let center: Point;
+
+    if (direction === 'Left') {
+      angle *= 1;
+    } else {
+      angle *= -1;
+    }
+
+    if (vertex === 'A') {
+      center = this.triangle.a;
+    } else if (vertex === 'B') {
+      center = this.triangle.b;
+    } else {
+      center = this.triangle.c;
+    }
+
+    for (let i = 1; i <= 60; i++) {
+      await this.sleep(2000 / 60.0);
+      this.drawGrid(this.gridSize);
+      this.onSubmit();
+      const triangle = Transformations.rotateTransformation(this.triangle, angle * (i) / 60.0, 1 + (ratio - 1) * (i) / 60.0, center);
+      this.drawTriangle(triangle);
+    }
+  }
+
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
