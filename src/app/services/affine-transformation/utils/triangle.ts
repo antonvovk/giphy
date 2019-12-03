@@ -44,9 +44,9 @@ export class Triangle {
   }
 
   public transform(transformation: Matrix): Triangle {
-    this.a = this.a.toVector().transform(transformation).toPoint();
-    this.b = this.b.toVector().transform(transformation).toPoint();
-    this.c = this.c.toVector().transform(transformation).toPoint();
-    return this;
+    const a = this.a.toVector().transform(transformation).toPoint();
+    const b = this.b.toVector().transform(transformation).toPoint();
+    const c = this.c.toVector().transform(transformation).toPoint();
+    return new Triangle(a, b, c);
   }
 }

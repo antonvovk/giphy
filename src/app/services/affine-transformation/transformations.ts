@@ -29,8 +29,8 @@ export class Transformations {
     ]);
   }
 
-  public static rotateTransformation(triangle: Triangle, angle: number, k: number, center: Point): void {
-    triangle
+  public static rotateTransformation(triangle: Triangle, angle: number, k: number, center: Point): Triangle {
+    return triangle
       .transform(Transformations.move(-center.x, -center.y))
       .transform(Transformations.rotate(angle))
       .transform(Transformations.scale(k, k))

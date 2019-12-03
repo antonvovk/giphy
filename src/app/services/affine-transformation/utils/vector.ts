@@ -32,7 +32,7 @@ export class Vector {
       let elem = 0.0;
 
       for (let j = 0; j < matrix.length; ++j) {
-        elem += this.coordinates[j] * matrix.coordinates[i][j];
+        elem += this.coordinates[j] * matrix.coordinates[j][i];
       }
 
       result[i] = elem;
