@@ -3,18 +3,14 @@ import {Matrix} from './matrix';
 
 export class Vector {
 
+  private readonly _coordinates: number[];
+
   constructor(coordinates: number[]) {
     this._coordinates = coordinates;
   }
 
-  private _coordinates: number[];
-
   get coordinates(): number[] {
     return this._coordinates;
-  }
-
-  set coordinates(value: number[]) {
-    this._coordinates = value;
   }
 
   public toPoint(): Point {
