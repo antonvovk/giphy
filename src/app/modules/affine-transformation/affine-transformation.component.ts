@@ -13,20 +13,18 @@ import {Point} from '../../services/affine-transformation/utils/point';
 export class AffineTransformationComponent implements OnInit, AfterViewInit {
 
   formGroup: FormGroup;
+  gridSize = 30;
 
   @ViewChild('canvas', {static: false}) canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('mainContent', {static: false}) mainContent: ElementRef;
-
-
-  triangle: Triangle;
 
   constructor(fb: FormBuilder, private snackBar: MatSnackBar) {
     this.formGroup = fb.group({
       x1: [0, [Validators.min(-100), Validators.max(100)]],
       y1: [0, [Validators.min(-100), Validators.max(100)]],
       x2: [0, [Validators.min(-100), Validators.max(100)]],
-      y2: [100, [Validators.min(-100), Validators.max(100)]],
-      x3: [100, [Validators.min(-100), Validators.max(100)]],
+      y2: [10, [Validators.min(-100), Validators.max(100)]],
+      x3: [10, [Validators.min(-100), Validators.max(100)]],
       y3: [0, [Validators.min(-100), Validators.max(100)]],
       size: [1, [Validators.min(-100), Validators.max(100)]]
     });
@@ -42,17 +40,68 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
 
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
-    const gridSize = 25;
-    const xAxisDistanceGridLines = 20;
-    const yAxisDistanceGridLines = 27;
-    const xAxisStartingPoint = {number: 1, suffix: '\u03a0'};
-    const yAxisStartingPoint = {number: 1, suffix: ''};
+  onSubmit() {
+    this.drawGrid(this.gridSize);
+    const sizeMultiplier = this.gridSize;
+    const x1 = this.formGroup.get('x1').value * sizeMultiplier;
+    const y1 = this.formGroup.get('y1').value * sizeMultiplier;
+    const x2 = this.formGroup.get('x2').value * sizeMultiplier;
+    const y2 = this.formGroup.get('y2').value * sizeMultiplier;
+    const x3 = this.formGroup.get('x3').value * sizeMultiplier;
+    const y3 = this.formGroup.get('y3').value * sizeMultiplier;
 
+    const triangle = new Triangle(new Point(x1, y1), new Point(x2, y2), new Point(x3, y3));
+
+    if (!triangle.valid()) {
+      this.openSnackBar('These point do not form triangle', 'Dismiss');
+      return;
+    }
+
+    this.drawTriangle(triangle);
+    Transformations.rotateTransformation(triangle, 90, 1, triangle.b);
+    this.drawTriangle(triangle);
+  }
+
+  drawTriangle(triangle: Triangle) {
+    const ctx = this.canvas.nativeElement.getContext('2d');
+    ctx.beginPath();
+    ctx.strokeStyle = '#000000';
+    ctx.moveTo(triangle.a.x, triangle.a.y);
+    ctx.lineTo(triangle.b.x, triangle.b.y);
+    ctx.stroke();
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.strokeStyle = '#000000';
+    ctx.moveTo(triangle.b.x, triangle.b.y);
+    ctx.lineTo(triangle.c.x, triangle.c.y);
+    ctx.stroke();
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.strokeStyle = '#000000';
+    ctx.moveTo(triangle.a.x, triangle.a.y);
+    ctx.lineTo(triangle.c.x, triangle.c.y);
+    ctx.stroke();
+    ctx.closePath();
+  }
+
+  ngAfterViewInit(): void {
+    this.drawGrid(this.gridSize);
+  }
+
+  drawGrid(gridSize: number) {
+    this.canvas.nativeElement.width = this.mainContent.nativeElement.offsetWidth;
+    this.canvas.nativeElement.height = this.mainContent.nativeElement.offsetHeight;
+    const ctx = this.canvas.nativeElement.getContext('2d');
+    ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     const canvasWidth = this.canvas.nativeElement.width;
     const canvasHeight = this.canvas.nativeElement.height;
+
     const numLinesX = Math.floor(canvasHeight / gridSize);
     const numLinesY = Math.floor(canvasWidth / gridSize);
+    const xAxisDistanceGridLines = Math.floor(numLinesX / 2.0);
+    const yAxisDistanceGridLines = Math.floor(numLinesY / 2.0);
 
     // Draw grid lines along X-axis
     for (let i = 0; i <= numLinesX; i++) {
@@ -101,63 +150,15 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
     ctx.translate(yAxisDistanceGridLines * gridSize, xAxisDistanceGridLines * gridSize);
   }
 
-  onSubmit() {
-    this.canvas.nativeElement.width = this.mainContent.nativeElement.offsetWidth;
-    this.canvas.nativeElement.height = this.mainContent.nativeElement.offsetHeight;
-    const ctx = this.canvas.nativeElement.getContext('2d');
-
-    ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-    this.draw(ctx);
-
-    const sizeMultiplier = this.formGroup.get('size').value;
-    const x1 = this.formGroup.get('x1').value * sizeMultiplier;
-    const y1 = this.formGroup.get('y1').value * sizeMultiplier;
-    const x2 = this.formGroup.get('x2').value * sizeMultiplier;
-    const y2 = this.formGroup.get('y2').value * sizeMultiplier;
-    const x3 = this.formGroup.get('x3').value * sizeMultiplier;
-    const y3 = this.formGroup.get('y3').value * sizeMultiplier;
-
-    const triangle = new Triangle(new Point(x1, y1), new Point(x2, y2), new Point(x3, y3));
-
-    if (!triangle.valid()) {
-      this.openSnackBar('These point do not form triangle', 'Dismiss');
-      return;
-    }
-
-    this.drawTriangle(triangle);
-    Transformations.rotateTransformation(triangle, 120, 1, triangle.a);
-    this.drawTriangle(triangle);
+  zoomIn() {
+    this.gridSize += 1;
+    this.drawGrid(this.gridSize);
+    this.onSubmit();
   }
 
-  drawTriangle(triangle: Triangle) {
-    const ctx = this.canvas.nativeElement.getContext('2d');
-    ctx.beginPath();
-    ctx.strokeStyle = '#000000';
-    ctx.moveTo(triangle.a.x, triangle.a.y);
-    ctx.lineTo(triangle.b.x, triangle.b.y);
-    ctx.stroke();
-    ctx.closePath();
-
-    ctx.beginPath();
-    ctx.strokeStyle = '#000000';
-    ctx.moveTo(triangle.b.x, triangle.b.y);
-    ctx.lineTo(triangle.c.x, triangle.c.y);
-    ctx.stroke();
-    ctx.closePath();
-
-    ctx.beginPath();
-    ctx.strokeStyle = '#000000';
-    ctx.moveTo(triangle.a.x, triangle.a.y);
-    ctx.lineTo(triangle.c.x, triangle.c.y);
-    ctx.stroke();
-    ctx.closePath();
-  }
-
-  ngAfterViewInit(): void {
-    this.canvas.nativeElement.width = this.mainContent.nativeElement.offsetWidth;
-    this.canvas.nativeElement.height = this.mainContent.nativeElement.offsetHeight;
-    const ctx = this.canvas.nativeElement.getContext('2d');
-    ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-    this.draw(ctx);
+  zoomOut() {
+    this.gridSize -= 1;
+    this.drawGrid(this.gridSize);
+    this.onSubmit();
   }
 }

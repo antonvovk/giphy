@@ -116,7 +116,10 @@
     </div>
   </div>
 
-  <div #mainContent class="w-100 h-100" style="background: transparent">
-    <canvas #canvas></canvas>
+  <div #mainContent class="canvas-container">
+    <canvas #canvas id='canvas'>
+    </canvas>
+    <button (click)="zoomIn()" id='button1'>+</button>
+    <button (click)="zoomOut()" id='button2'>-</button>
   </div>
 </div>

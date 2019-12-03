@@ -1,3 +1,25 @@
 .mat-input-element {
   color: black !important;
 }
+
+.canvas-container {
+  position: relative;
+  width: 1440px;
+  height: 889px;
+}
+
+#canvas {
+  position: absolute;
+}
+
+#button1 {
+  position: absolute;
+  left: 92%;
+  top: 93%
+}
+
+#button2 {
+  position: absolute;
+  left: 96%;
+  top: 93%
+}
