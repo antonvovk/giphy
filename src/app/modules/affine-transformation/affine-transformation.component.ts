@@ -21,16 +21,16 @@ export class AffineTransformationComponent implements OnInit, AfterViewInit {
 
   constructor(fb: FormBuilder, private snackBar: MatSnackBar) {
     this.formGroup = fb.group({
-      x1: [0, [Validators.min(-100), Validators.max(100)]],
-      y1: [8, [Validators.min(-100), Validators.max(100)]],
-      x2: [0, [Validators.min(-100), Validators.max(100)]],
-      y2: [5, [Validators.min(-100), Validators.max(100)]],
-      x3: [10, [Validators.min(-100), Validators.max(100)]],
-      y3: [5, [Validators.min(-100), Validators.max(100)]],
+      x1: [0, [Validators.min(-50), Validators.max(50)]],
+      y1: [8, [Validators.min(-50), Validators.max(50)]],
+      x2: [0, [Validators.min(-50), Validators.max(50)]],
+      y2: [5, [Validators.min(-50), Validators.max(50)]],
+      x3: [10, [Validators.min(-50), Validators.max(50)]],
+      y3: [5, [Validators.min(-50), Validators.max(50)]],
       vertex: ['A'],
       direction: ['Left'],
-      angle: [90],
-      ratio: [1]
+      angle: [90, [Validators.min(0), Validators.max(2048)]],
+      ratio: [1, [Validators.min(1), Validators.max(10)]]
     });
   }
 
