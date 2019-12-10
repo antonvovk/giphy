@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-tutorial',
@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TutorialComponent implements OnInit {
 
-  constructor() { }
+  fractal = false;
+  color = false;
+  affine = false;
+
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
 
+  fractalClick() {
+    this.fractal = !this.fractal;
+  }
+
+  colorClick() {
+    this.color = !this.color;
+  }
+
+  affineClick() {
+    this.affine = !this.affine;
+  }
 }
